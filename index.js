@@ -21,24 +21,20 @@ app.get('/albums', (req, res) => {
 
 app.get('/albums/:id', (req, res) => {
   Album
-    .findById(req.body.id)
+    .findById({ id: req.body.id })
     .then(albums => res.send(albums));
 });
 
 app.put('/albums/:id', (req, res) => {
   Album
-    .update(req.body.id)
+    .update({ id: req.body.id })
     .then(albums => res.send(albums));
 });
 
 app.delete('/albums/:id', (req, res) => {
   Album
-    .delete(req.body.id)
+    .delete({ id: req.body.id })
     .then(albums => res.send(albums));
-});
-
-app.listen(7890, () => {
-  console.log('started on 7890');
 });
 
 module.exports = app;
