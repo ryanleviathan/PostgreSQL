@@ -17,6 +17,7 @@ module.exports = class Album {
     const { rows } = await pool.query(
       'INSERT INTO albums (artist, album_title, year_of) VALUES ($1, $2, $3) RETURNING *', [artist, album_title, year_of]
     );
+    
     return new Album(rows[0]);
   }
 
@@ -32,6 +33,7 @@ module.exports = class Album {
     );
 
     if(!rows[0]) throw new Error(`No album with id ${id}`);
+    
     return new Album(rows[0]);
   }
 
@@ -45,12 +47,17 @@ module.exports = class Album {
         RETURNING *`,
       [artist, album_title, year_of, id]
     );
+    
+    if(!rows[0]) throw new Error(`No album with id ${id}`);
+    
     return new Album(rows[0]);
   }
   
   static async delete(id) {
     const { rows } = await pool.query('DELETE FROM albums WHERE id=$1 RETURNING *', [id]);
-
+    
+    if(!rows[0]) throw new Error(`No album with id ${id}`);
+    
     return new Album(rows[0]);
   }
 };

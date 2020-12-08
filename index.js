@@ -21,19 +21,19 @@ app.get('/albums', (req, res) => {
 
 app.get('/albums/:id', (req, res) => {
   Album
-    .findById({ id: req.body.id })
+    .findById(req.params.id)
     .then(albums => res.send(albums));
 });
 
 app.put('/albums/:id', (req, res) => {
   Album
-    .update({ id: req.body.id })
+    .update(req.params.id, req.body)
     .then(albums => res.send(albums));
 });
 
 app.delete('/albums/:id', (req, res) => {
   Album
-    .delete({ id: req.body.id })
+    .delete(req.params.id)
     .then(albums => res.send(albums));
 });
 
