@@ -23,7 +23,7 @@ describe('app endpoints', () => {
     await expect(res.body).toEqual({
       "artist": "PARTYNEXTDOOR",
       "album_title": "PARTYMOBILE",
-      "id": "29",
+      "id": "30",
       "year_of": 2020
     });
   });
@@ -34,13 +34,13 @@ describe('app endpoints', () => {
     expect(res.body).toEqual([{
       "artist": "PARTYNEXTDOOR",
       "album_title": "PARTYMOBILE",
-      "id": "29",
+      "id": "30",
       "year_of": 2020
     }]);
   });
   it('updates an album by id in /albums', async() => {
     const res = await request(app)
-      .put('/albums/29')
+      .put('/albums/30')
       .send({
         artist: 'PARTYNEXTDOOR',
         album_title: 'PARTYNEXTDOOR 3',
@@ -50,13 +50,13 @@ describe('app endpoints', () => {
     expect(res.body).toEqual({
       "artist": "PARTYNEXTDOOR",
       "album_title": "PARTYNEXTDOOR 3",
-      "id": "29",
+      "id": "30",
       "year_of": 2016
     });
   });
   it('deletes an album by id from /albums', async() => {
     const res = await request(app)
-      .delete('/album/29')
+      .delete('/album/30')
       .send({
         artist: 'PARTYNEXTDOOR',
         album_title: 'PARTYNEXTDOOR 3',
